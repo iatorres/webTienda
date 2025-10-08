@@ -7,14 +7,14 @@ const SaleRow = ({ sale }) => {
 
   return (
     <>
-      <tr onClick={() => setExpanded(!expanded)} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
+      <tr onClick={() => setExpanded(!expanded)} className="border-b border-gray-200 dark:border-gray-700 hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer">
         <td className="p-4 font-medium">#{sale.id}</td>
         <td className="p-4">{new Date(sale.createdAt).toLocaleString()}</td>
         <td className="p-4">{sale.items.length}</td>
         <td className="p-4 font-semibold text-right">{formatMoney(sale.total)}</td>
       </tr>
       {expanded && (
-        <tr className="bg-gray-50 dark:bg-gray-800">
+        <tr className="bg-white-50 text-white dark:bg-gray-800">
           <td colSpan="4" className="p-4">
             <div className="font-semibold mb-2">Detalles del pedido:</div>
             {sale.items.map((it, idx) => (

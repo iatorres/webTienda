@@ -30,7 +30,7 @@ export default function ProductList({ products=[], onUpdate, onDelete }){
           </thead>
           <tbody>
             {filtered.map(p=>(
-              <tr key={p.id} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              <tr key={p.id} className="border-b border-gray-200 dark:border-gray-700 hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                 <td className="p-4 font-medium">{p.name}</td>
                 <td className="p-4">
                   <input 
@@ -38,7 +38,7 @@ export default function ProductList({ products=[], onUpdate, onDelete }){
                     type="number" 
                     step="0.01" 
                     onBlur={e=>onUpdate({ ...p, price: Number(e.target.value) })} 
-                    className="w-24 p-1 rounded bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600"
+                    className="w-24 p-1 rounded bg-gray-700 text-white dark:bg-gray-700 border border-gray-600 dark:border-gray-600"
                   />
                 </td>
                 <td className="p-4">{p.stock}</td>

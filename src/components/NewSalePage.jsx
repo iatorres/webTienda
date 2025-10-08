@@ -43,6 +43,7 @@ export default function NewSalePage(){
   const removeFromCart = useStore(s=>s.removeFromCart)
   const createSale = useStore(s=>s.createSale)
   const setToast = useStore(s=>s.setToast)
+  const [q, setQ] = React.useState('')
 
   const ivaRate = 0.21
   const subtotal = cart.reduce((s,i)=> s + i.unitPrice*i.quantity, 0)
@@ -76,12 +77,21 @@ export default function NewSalePage(){
     doc.save(`ticket-${sale.id}.pdf`)
   }
 
+  const filteredProducts = products.filter(p => 
+    p.name.toLowerCase().includes(q.toLowerCase())
+  )
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div className="lg:col-span-2">
-        <h2 className="text-2xl font-bold mb-4">Productos</h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-bold">Productos</h2>
+        </div>
+        <input 
+          className="w-full p-3 mb-4 bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary"
+          placeholder="Buscar producto..." value={q} onChange={e=>setQ(e.target.value)} />
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {products.map(p=>(
+          {filteredProducts.map(p=>(
             <ProductCard key={p.id} product={p} onAddToCart={addToCart} />
           ))}
         </div>
